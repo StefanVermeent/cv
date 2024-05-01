@@ -8,7 +8,7 @@ params:
 output:
   pagedown::html_resume:
     css: ['dd_cv.css', 'resume']
-    self_contained: true
+    self_contained: false
 ---
 
 ```{r, include=FALSE}
@@ -48,15 +48,16 @@ Aside
 ```{r}
 # Build interactive network of positions colored by section
 # and connected if they occurred in the same year
-datadrivencv::build_network_logo(CV$entries_data)
+#datadrivencv::build_network_logo(CV$entries_data)
+knitr::include_graphics('stefan.jpg')
 ```
 
 
 ```{r}
 if(params$pdf_mode){
-  cat("View this CV online with links at _C:/Repositories/cv_")
+  cat("")
 } else {
-  cat("[<i class='fas fa-download'></i> Download a PDF of this CV](C:/Repositories/cv)")
+  cat("")
 }
 ```
 
@@ -66,7 +67,6 @@ Contact {#contact}
 ```{r}
 CV %>% print_contact_info()
 ```
-
 
 
 Language Skills {#skills}
@@ -83,7 +83,6 @@ Disclaimer {#disclaimer}
 
 Made with the R package [**pagedown**](https://github.com/rstudio/pagedown). 
 
-The source code is available [on github.com/nstrayer/cv](https://github.com/nstrayer/datadrivencv).
 
 Last updated on `r Sys.Date()`.
 
@@ -125,7 +124,7 @@ Industry Experience {data-icon=suitcase}
 
 ::: aside
 ```{r}
-CV %<>% print_text_block('industy_experience_aside')
+#CV %<>% print_text_block('industy_experience_aside')
 ```
 :::
 
@@ -133,13 +132,16 @@ CV %<>% print_text_block('industy_experience_aside')
 CV %<>% print_section('industry_positions')
 ```
 
+Grants
+--------------------------------------------------------------------------------
+```{r}
+CV %<>% print_section('awards_prizes')
+```
+
 <!-- These breaks just force a new page so section doesnt get cut off -->
 <br>
 <br>
 <br>
-
-
-
 
 Publications {data-icon=book}
 --------------------------------------------------------------------------------
@@ -148,31 +150,60 @@ Publications {data-icon=book}
 CV %<>% print_section('academic_articles')
 ```
 
-Talks
+Publications in preparation / preprints {data-icon=book}
 --------------------------------------------------------------------------------
 
 ```{r}
-#CV %<>% print_section('talks')
+CV %<>% print_section('academic_articles_prep')
+```
+
+Conference, symposium, & workshop talks
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('conf_talks')
+```
+
+Departmental or institute talks
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('dept_talks')
 ```
 
 Posters
 --------------------------------------------------------------------------------
 
 ```{r}
-#CV %<>% print_section('posters')
+CV %<>% print_section('posters')
 ```
+
+Workshops
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section("workshops")
+```
+
+R Packages 
+--------------------------------------------------------------------------------
+```{r}
+CV %<>% print_section('r_packages')
+```
+
 
 Teaching Experience {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
 
-::: aside
-```{r}
-#CV %<>% print_text_block('teaching_experience_aside')
-```
-:::
-
 ```{r}
 CV %<>% print_section('teaching_positions')
+```
+
+Academic Services and Memberships
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('services')
 ```
 
 Reviews

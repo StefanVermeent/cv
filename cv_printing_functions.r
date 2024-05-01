@@ -150,6 +150,8 @@ print_section <- function(cv, section_id, glue_template = "default"){
   }
 
   section_data <- dplyr::filter(cv$entries_data, section == section_id)
+  
+
 
   # Take entire entries data frame and removes the links in descending order
   # so links for the same position are right next to each other in number.
@@ -233,7 +235,7 @@ Links {data-icon=link}
 print_contact_info <- function(cv){
   glue::glue_data(
     cv$contact_info,
-    "- <i class='fa fa-{icon}'></i> {contact}"
+    "<i class='fa fa-{icon}'></i> {contact}<br>"
   ) %>% print()
 
   invisible(cv)
